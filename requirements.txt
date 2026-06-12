@@ -1,0 +1,15 @@
+numpy
+pandas
+scikit-learn
+torch
+torchvision
+torchaudio
+pytorch-tabnet
+pyyaml
+matplotlib
+seaborn
+shap
+tqdm
+optuna
+joblib
+xgboost
