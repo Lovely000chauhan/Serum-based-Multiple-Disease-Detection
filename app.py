@@ -340,10 +340,9 @@ elif page == "Analysis":
         ]])
 
         probs = tabnet_model.predict_proba(input_data)[0]
-        disease_idx = tabnet_model.predict(input_data)[0]
+        disease = tabnet_model.predict(input_data)[0]
 
-        # FIX 5: Map the numeric prediction index to the disease label string
-        disease = disease_labels[disease_idx]
+        
 
         confidence = float(np.max(probs))
 
@@ -444,23 +443,6 @@ elif page == "Results":
 
         st.write("---")
 
-        # FIX 6: Added the missing disease probability chart
-        st.subheader("🎯 Disease Probability Distribution")
-
-        fig1, ax1 = plt.subplots()
-        bars = ax1.bar(disease_labels, probs, color=["green","orange","red","purple","blue"])
-        ax1.set_ylabel("Probability")
-        ax1.set_xlabel("Disease")
-        ax1.set_title("Model Confidence per Disease")
-        plt.xticks(rotation=20, ha="right")
-        for bar, prob in zip(bars, probs):
-            ax1.text(
-                bar.get_x() + bar.get_width() / 2,
-                bar.get_height() + 0.01,
-                f"{prob:.2f}",
-                ha="center", va="bottom", fontsize=9
-            )
-        st.pyplot(fig1)
 
         st.write("---")
 
